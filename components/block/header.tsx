@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Button } from "../ui/button";
 import { SearchBar } from "./search-bar";
 
@@ -27,7 +28,9 @@ export default function Header() {
     <div className="flex w-full border-b p-4 items-center">
       <Link className="text-2xl font-bold" href="/">Talos</Link>
 
-      <SearchBar />
+      <Suspense fallback={null}>
+        <SearchBar />
+      </Suspense>
 
       <div className="flex gap-2">
         <UserMenu />

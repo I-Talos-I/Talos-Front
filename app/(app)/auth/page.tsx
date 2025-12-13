@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
 
-export default function AuthPage() {
+export const dynamic = "force-dynamic";
+
+export default function Page() {
+
   redirect("/auth/login");
+
 }
