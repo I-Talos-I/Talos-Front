@@ -12,10 +12,14 @@ const UserMenu = () => {
   if (!account) {
     return (
       <>
-      <Button variant="outline">Registrarse</Button>
-        <Button variant="ghost" >Iniciar sesión</Button>
-        </>
-      )
+        <Button variant="outline" asChild>
+          <Link href="/auth/register">Registrarse</Link>
+        </Button>
+        <Button variant="ghost" asChild>
+          <Link href="/auth/login">Iniciar sesión</Link>
+        </Button>
+      </>
+    );
   }
 
   return (
