@@ -1,13 +1,10 @@
-import { api } from "@/services";
-import { SearchTemplateResponse } from "@/types/template";
 
-export const searchTemplate = async (q: string): Promise<SearchTemplateResponse> => {
-  const response = await api.get<SearchTemplateResponse>(
-    "/templates/search",
-    {
-      params: { q }
-    }
-  );
+export const searchTemplate = async (q: string) => {
+  const res = await fetch(`/api/templates/search?q=${encodeURIComponent(q)}`);
 
-  return response.data;
+  if (!res.ok) {
+    throw new Error("Search failed");
+  }
+
+  return res.json();
 };

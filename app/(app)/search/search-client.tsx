@@ -43,7 +43,7 @@ export default function SearchClient() {
   console.log(results);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-8">
+    <div className="max-w-lg mx-auto px-6 py-8">
       {query && (
         <div className="max-w-lg mx-auto space-y-3 mb-4">
           <p className="mt-2 text-sm text-muted-foreground">
