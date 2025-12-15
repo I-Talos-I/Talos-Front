@@ -1,3 +1,12 @@
+const parseDate = (iso: string) => {
+  if (!iso) return new Date(NaN);
+  // Si no tiene indicador de zona horaria, asumimos UTC.
+  if (!iso.endsWith('Z') && !iso.match(/[+-]\d{2}:\d{2}$/)) {
+    iso = iso + 'Z';
+  }
+  return new Date(iso);
+};
+
 export const formatDate = (
   iso: string,
   options: {
@@ -12,15 +21,17 @@ export const formatDate = (
 
   if (!iso) return "";
 
+  const date = parseDate(iso);
+  if (isNaN(date.getTime())) return "";
 
   return new Intl.DateTimeFormat("es-CO", {
     dateStyle,
     timeStyle,
-  }).format(new Date(iso));
+  }).format(date);
 };
 
 export const formatRelativeDate = (iso: string) => {
-  const date = new Date(iso);
+  const date = parseDate(iso);
   if (isNaN(date.getTime())) return "";
 
   const now = new Date();

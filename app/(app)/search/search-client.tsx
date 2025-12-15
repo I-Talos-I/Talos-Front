@@ -62,11 +62,18 @@ export default function SearchClient() {
             <Item variant="outline" key={template.id} asChild>
               <Link href={`/template/${template.slug}`}>
                 <ItemContent>
-                  <ItemTitle>{template.templateName}</ItemTitle>
+                  <ItemTitle>{template.name}</ItemTitle>
                   <ItemDescription>
-                    <time title={formatDate(template.createdAt)}>
-                      {formatRelativeDate(template.createdAt)}
-                    </time>
+                    <p>{template.description}</p>
+                    <div>
+                      <span>
+                        by <strong>{template.userName}</strong>
+                      </span>
+                      {" - "}
+                      <time title={formatDate(template.createdAt)}>
+                        {formatRelativeDate(template.createdAt)}
+                      </time>
+                    </div>
                   </ItemDescription>
                 </ItemContent>
               </Link>

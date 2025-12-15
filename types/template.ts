@@ -1,11 +1,12 @@
 export type TemplateSearchItem = {
   id: number;
-  templateName: string;
+  name: string;
+  description: string | null;
   slug: string;
   isPublic: boolean;
   licenseType: string | null;
   createdAt: string;
-  userId: number;
+  userName: string;
 };
 
 export type SearchTemplateResponse = TemplateSearchItem[];
