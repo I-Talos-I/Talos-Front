@@ -22,7 +22,7 @@ export function SearchBar() {
 
   return (
     <div className="flex-1 flex justify-center">
-      <form onSubmit={onSubmit} className="flex gap-2 max-w-100">
+      <form onSubmit={onSubmit} className="flex gap-2 max-w-lg w-full">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input

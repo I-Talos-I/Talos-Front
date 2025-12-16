@@ -1,4 +1,3 @@
-
 export const searchTemplate = async (q: string) => {
   const res = await fetch(`/api/templates/search?q=${encodeURIComponent(q)}`);
 
@@ -8,9 +7,3 @@ export const searchTemplate = async (q: string) => {
 
   return res.json();
 };
-
-
-export const templateBySlug = async (slug: string) => {
-  const res = await fetch(`/api/templates/by-slug/${slug}`);
-  return res.json();
-}
