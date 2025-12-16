@@ -8,7 +8,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { searchTemplate } from "@/services";
 import { SearchTemplateResponse } from "@/types/template";
 import { formatDate, formatRelativeDate } from "@/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
@@ -63,7 +63,7 @@ export default function SearchClient() {
       )}
 
       {results && results.length > 0 ? (
-        <div>
+        <div className="flex flex-col gap-5">
           {results.map((template) => (
             <Card
               key={template.id}
@@ -93,6 +93,12 @@ export default function SearchClient() {
                     </time>
                   </div>
                 </div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link target="_blank" rel="noreferrer noopener" href={`/r/${template.slug}`}>
+                    <Code2 />
+                    Raw Version
+                  </Link>
+                </Button>
                 <Button variant="outline" size="sm" asChild>
                   <Link href={`/template/${template.slug}`}>
                     Install <ArrowRight />
