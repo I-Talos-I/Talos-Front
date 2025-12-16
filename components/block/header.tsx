@@ -14,17 +14,22 @@ const UserMenu = () => {
     return (
       <>
         <Button variant="outline" asChild>
-          <Link href="/auth/register">Registrarse</Link>
+          <Link href="/auth/register">Register</Link>
         </Button>
         <Button variant="ghost" asChild>
-          <Link href="/auth/login">Iniciar sesión</Link>
+          <Link href="/auth/login">Login</Link>
         </Button>
       </>
     );
   }
 
   return (
-    <Button>Perfil</Button>
+    <div className="flex items-center gap-2">
+      <Button asChild>
+        <Link href="/create">Create template</Link>
+      </Button>
+      <span>{account.username}</span>
+    </div>
   )
 }
 
