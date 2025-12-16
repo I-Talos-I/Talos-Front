@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import { LogOut } from "lucide-react";
+import { Github, LogOut, Terminal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -63,24 +63,25 @@ export default function Header() {
       </div>
       <nav className="flex justify-center p-2 gap-2 [&_a]:p-3 border-t">
         <Button asChild variant="link">
-          <a href="#features" className="text-sm text-muted-foreground">
-            Features
+          <a
+            href="https://github.com/orgs/I-Talos-I/repositories"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-sm text-muted-foreground"
+          >
+            <Github />
+            Github
           </a>
         </Button>
         <Button asChild variant="link">
           <a
-            href="#templates"
+            href="https://github.com/I-Talos-I/Talos-CLI"
+            target="_blank"
+            rel="noreferrer noopener"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            Templates
-          </a>
-        </Button>
-        <Button asChild variant="link">
-          <a
-            href="#docs"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Docs
+            <Terminal />
+            Talos CLI
           </a>
         </Button>
       </nav>
