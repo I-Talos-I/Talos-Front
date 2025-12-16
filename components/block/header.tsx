@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
+import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -8,7 +9,7 @@ import { Button } from "../ui/button";
 import { SearchBar } from "./search-bar";
 
 const UserMenu = () => {
-  const { account } = useAuth();
+  const { account, logout } = useAuth();
 
   if (!account) {
     return (
@@ -28,10 +29,12 @@ const UserMenu = () => {
       <Button asChild>
         <Link href="/create">Create template</Link>
       </Button>
-      <span>{account.username}</span>
+      <Button onClick={logout}>
+        <LogOut />
+      </Button>
     </div>
-  )
-}
+  );
+};
 
 export default function Header() {
   return (

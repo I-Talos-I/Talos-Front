@@ -1,8 +1,11 @@
-"use client"
+"use client";
 
-import { loadProfile as loadProfileService, login as loginService } from "@/services";
-import { Account, AuthContextType, Login } from "@/types";
-import { redirect } from "next/navigation";
+import {
+  loadProfile as loadProfileService,
+  login as loginService,
+  register as registerService,
+} from "@/services";
+import { Account, AuthContextType, Login, Register } from "@/types";
 import React from "react";
 
 export const AuthContext = React.createContext<AuthContextType | null>(null);
@@ -17,14 +20,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem("token", response.token);
 
       setAccount(response.user);
-      redirect("/");
+      window.location.href = "/";
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+  const handleRegister = async (register: Register) => {
+    try {
+      await registerService(register);
+
+      window.location.href = "/auth/login";
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleLoadProfile = async () => {
-    if (!localStorage.getItem('token')) return;
+    if (!localStorage.getItem("token")) return;
 
     try {
       const response = await loadProfileService();
@@ -34,7 +47,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.removeItem("token");
       console.error(error);
     }
-  }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    window.location.reload();
+  };
 
   React.useEffect(() => {
     if (account === undefined || account) return;
@@ -44,9 +63,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ account, login: handleLogin, loadProfile: handleLoadProfile }}
+      value={{
+        account,
+        registerService: handleRegister,
+        login: handleLogin,
+        loadProfile: handleLoadProfile,
+        logout: handleLogout,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
-}
+};
