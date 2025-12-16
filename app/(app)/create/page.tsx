@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -14,9 +15,9 @@ import { PostFormValues, postSchema } from "@/schemas/template.post.schema";
 import { createTemplate } from "@/services";
 import { slugify } from "@/utils";
 
-// Importamos el servicio
-
 export default function Page() {
+  const [loading, setLoading] = useState(false); // <- Estado de loading
+
   const form = useForm<PostFormValues>({
     resolver: zodResolver(postSchema),
     defaultValues: {
@@ -41,15 +42,17 @@ export default function Page() {
 
   const { register, handleSubmit, control, watch } = form;
 
-  // Usamos createTemplate en lugar de fetch directo
   const onSubmit = async (data: PostFormValues) => {
+    setLoading(true); // <- Activamos loading
     try {
       const template = await createTemplate(data);
-
       alert("Template creado!");
       window.location.href = `/template/${slugify(template.name)}`;
     } catch (error) {
       console.error("Error creando template:", error);
+      alert("Ocurrió un error al crear el template.");
+    } finally {
+      setLoading(false); // <- Desactivamos loading
     }
   };
 
@@ -120,7 +123,9 @@ export default function Page() {
         />
       </div>
 
-      <Button type="submit">Enviar</Button>
+      <Button type="submit" disabled={loading}>
+        {loading ? "Creando..." : "Enviar"}
+      </Button>
     </form>
   );
 }
