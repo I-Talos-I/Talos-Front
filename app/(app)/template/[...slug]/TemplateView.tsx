@@ -33,15 +33,17 @@ export default function TemplateView({ template }: { template: Template }) {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // Preprocess description to insert newlines before option flags for better Markdown list rendering
+  const formattedDescription = template.description.replace(/ -(\w)/g, "\n-$1");
+
   return (
     <main className="space-y-6 mt-5 max-w-xl mx-auto">
       {/* Header */}
       <header>
         <h1 className="text-2xl font-bold">{template.name}</h1>
         <ReactMarkdown>
-          {template.description}
+          {formattedDescription}
         </ReactMarkdown>
-        <p className="text-muted-foreground">{template.description}</p>
         <div className="text-sm opacity-70 mt-2">
           <span>Slug: {template.slug}</span> ·{" "}
           <span>License: {template.licenseType}</span> ·{" "}
