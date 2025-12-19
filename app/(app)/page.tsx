@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Package, Shield, Terminal, Zap } from "lucide-react";
+import { Github, Package, Shield, Terminal, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   return (
     <div className="min-h-screen bg-background">
-
       {/* Hero Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,8 +22,15 @@ export default function Page() {
               scripts, and complex workflows.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="w-full sm:w-auto">
-                Download
+              <Button size="lg" className="w-full sm:w-auto" asChild>
+                <Link
+                  href="https://github.com/I-Talos-I/Talos-Install"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Github />
+                  Download
+                </Link>
               </Button>
               {/* <Button
                 size="lg"
@@ -273,8 +280,16 @@ export default function Page() {
                 size="lg"
                 variant="secondary"
                 className="w-full sm:w-auto"
+                asChild
               >
-                Download for Free
+                <Link
+                  href="https://github.com/I-Talos-I/Talos-Install"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Github />
+                  Download for Free
+                </Link>
               </Button>
               {/* <Button
                 size="lg"
@@ -419,7 +434,8 @@ export default function Page() {
           </div>
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
             <p>
-              © 2025 Talos by Vandlee. Named after the bronze automaton of Greek mythology.
+              © 2025 Talos by Vandlee. Named after the bronze automaton of Greek
+              mythology.
             </p>
           </div>
         </div>
