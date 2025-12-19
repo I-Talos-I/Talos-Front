@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 type Template = {
   id: number;
@@ -37,6 +38,9 @@ export default function TemplateView({ template }: { template: Template }) {
       {/* Header */}
       <header>
         <h1 className="text-2xl font-bold">{template.name}</h1>
+        <ReactMarkdown>
+          {template.description}
+        </ReactMarkdown>
         <p className="text-muted-foreground">{template.description}</p>
         <div className="text-sm opacity-70 mt-2">
           <span>Slug: {template.slug}</span> ·{" "}
